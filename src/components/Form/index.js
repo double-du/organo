@@ -1,5 +1,6 @@
 // Componentes
 
+import { useState } from 'react';
 import Button from '../Button';
 import Dropdown from '../Dropdown';
 import TextField from '../TextField';
@@ -20,19 +21,45 @@ const Form = () => {
         'Gestão'
     ];
 
-    const onSave = (event) => {
+    
+    const [nome, setNome] = useState('');
+    const [cargo, setCargo] = useState('');
+    const [imagem, setImagem] = useState('');
+    const [time, setTime] = useState('');
+
+    const aoSalvar = (event) => {
         event.preventDefault();
         console.log("Salvo!");
+        console.log(`Dados do Formulario:\nNome: ${nome}\nCargo: ${cargo}\nImagem: ${imagem}\nTime: ${time}`);
     }
 
     return (
         <section className='form_section'>
-            <form onSubmit={onSave}>
+            <form onSubmit={aoSalvar}>
                 <h2>Preencha os dados pra criar o card do colaborador</h2>
-                <TextField  label='Nome'    placeholder='Digite seu nome'       required={true}/>
-                <TextField  label='Cargo'   placeholder='Digite seu cargo'      required={true}/>
-                <TextField  label='Imagem'  placeholder='Selecione sua imagem'  />
-                <Dropdown   label='Time'    items={times} />
+                <TextField  
+                    label='Nome'    
+                    placeholder='Digite seu nome'       
+                    required={true}
+                    onChange={value => setNome(value)}
+                />
+                <TextField  
+                    label='Cargo'   
+                    placeholder='Digite seu cargo'      
+                    required={true}
+                    onChange={value => setCargo(value)}
+                />
+                <TextField  
+                    label='Imagem'  
+                    placeholder='Selecione sua imagem' 
+                    onChange={value => setImagem(value)}
+                />
+                <Dropdown   
+                    label='Time'    
+                    items={times}
+                    value={time}
+                    aoAlterar={ valor => setTime(valor)}
+                />
                 <Button>Criar Card</Button>
             </form>
         </section>

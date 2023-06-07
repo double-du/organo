@@ -9,8 +9,8 @@ import TextField from '../TextField';
 
 import './Form.css';
 
-const Form = () => {
-
+const Form = (props) => {
+/* Removido para tornar a lista dinamizada a partir do app * /
     const times = [
         'Programação',
         'Front-End',
@@ -20,7 +20,7 @@ const Form = () => {
         'Inovação',
         'Gestão'
     ];
-
+/* */
     
     const [nome, setNome] = useState('');
     const [cargo, setCargo] = useState('');
@@ -29,8 +29,12 @@ const Form = () => {
 
     const aoSalvar = (event) => {
         event.preventDefault();
-        console.log("Salvo!");
-        console.log(`Dados do Formulario:\nNome: ${nome}\nCargo: ${cargo}\nImagem: ${imagem}\nTime: ${time}`);
+        props.aoCadastrar({
+            nome, 
+            cargo, 
+            imagem, 
+            time
+        })
     }
 
     return (
@@ -56,7 +60,7 @@ const Form = () => {
                 />
                 <Dropdown   
                     label='Time'    
-                    items={times}
+                    items={props.listaDeTimes}
                     value={time}
                     aoAlterar={ valor => setTime(valor)}
                 />

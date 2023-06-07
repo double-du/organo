@@ -1,5 +1,6 @@
 // Componentes
 
+import Button from '../Button';
 import Dropdown from '../Dropdown';
 import TextField from '../TextField';
 
@@ -27,6 +28,7 @@ const Form = () => {
                 <TextField  label='Cargo'  placeholder='Digite seu cargo'/>
                 <TextField  label='Imagem' placeholder='Selecione sua imagem'/>
                 <Dropdown   label='Time' items={times} />
+                <Button>Criar Card</Button>
             </form>
         </section>
     )
